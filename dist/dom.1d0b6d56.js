@@ -125,16 +125,20 @@ window.dom = {
     return container.content.firstChild;
   },
   after: function after(node, node2) {
+    //insertBefore(newItem ,existingItem)
     node.parentNode.insertBefore(node2, node.nextSibling);
   },
   before: function before(node, node2) {
+    //insertBefore(newItem ,existingItem)
     node.parentNode.insertBefore(node2, node);
   },
   append: function append(parent, node) {
     parent.appendChild(node);
   },
   wrap: function wrap(node, parent) {
-    dom.before(node, parent);
+    //将新节点插入已有节点之前
+    dom.before(node, parent); //将已有节点作为新节点的子节点
+
     dom.append(parent, node);
   },
   remove: function remove(node) {
@@ -143,9 +147,10 @@ window.dom = {
     return node;
   },
   empty: function empty(node) {
+    // 等于 const childNodes = node.childNodes
     var childNodes = node.childNodes;
     var array = [];
-    var x = node.firstChild;
+    var x = node.firstChild; // 因为node.firstChild是动态的，原有的firstChild被移除后，第二个孩子节点变为firstChild
 
     while (x) {
       array.push(dom.remove(x));
@@ -205,6 +210,7 @@ window.dom = {
     }
   },
   class: {
+    //使用节点的classList属性
     add: function add(node, className) {
       node.classList.add(className);
     },
@@ -212,6 +218,7 @@ window.dom = {
       node.classList.remove(className);
     },
     has: function has(node, className) {
+      //使用node.classList.contains()来判断是否含有对应属性
       return node.classList.contains(className);
     }
   },
@@ -222,6 +229,8 @@ window.dom = {
     node.removeEventListener(eventName, fn);
   },
   find: function find(selector, scope) {
+    //若scope不为空，则使用scope，否则使用document
+    //返回的是list
     return (scope || document).querySelectorAll(selector);
   },
   parent: function parent(node) {
@@ -231,21 +240,23 @@ window.dom = {
     return node.children;
   },
   siblings: function siblings(node) {
+    //node.children返回的是伪数组，使用Array.from将其转换为Array
     return Array.from(node.parentNode.children).filter(function (n) {
       return n !== node;
     });
   },
   next: function next(node) {
-    var x = node.nextSibling;
+    var x = node.nextSibling; //node.nextSibling返回的数据包含文本节点
 
     while (x && x.nodeType === 3) {
+      //nextSibling的数据为动态
       x = x.nextSibling;
     }
 
     return x;
   },
   previous: function previous(node) {
-    var x = node.previousSibling;
+    var x = node.previousSibling; //node.nextSibling返回的数据包含文本节点
 
     while (x && x.nodeType === 3) {
       x = x.previousSibling;
@@ -255,12 +266,12 @@ window.dom = {
   },
   each: function each(nodeList, fn) {
     for (var i = 0; i < nodeList.length; i++) {
-      console.log(nodeList[i]);
       fn.call(null, nodeList[i]);
     }
   },
   index: function index(node) {
-    var list = dom.children(node.parentNode);
+    var list = dom.children(node.parentNode); //遍历节点
+
     var i;
 
     for (i = 0; i < list.length; i++) {
@@ -272,7 +283,7 @@ window.dom = {
     return i;
   }
 };
-},{}],"C:/Users/Hlccare/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"C:/Users/DELL/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -300,7 +311,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51819" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56338" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -476,5 +487,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/Hlccare/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","dom.js"], null)
+},{}]},{},["C:/Users/DELL/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","dom.js"], null)
 //# sourceMappingURL=/dom.1d0b6d56.js.map

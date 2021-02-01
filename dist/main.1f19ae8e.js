@@ -160,7 +160,17 @@ dom.each(dom.children(t), function (n) {
   return dom.style(n, 'color', 'red');
 });
 console.log(dom.index(t2));
-},{}],"C:/Users/Hlccare/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var redDiv = dom.find('#test>.red')[0]; // 获取对应的元素
+
+dom.style(redDiv, 'color', 'red'); // 设置 div.style.color
+
+console.log('----');
+var divList = dom.find('.red'); // 获取多个 .red 元素
+
+dom.each(divList, function (n) {
+  return console.log(n);
+}); // 遍历 divList 里的所有元素
+},{}],"C:/Users/DELL/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -188,7 +198,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51819" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56338" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -364,5 +374,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/Hlccare/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
+},{}]},{},["C:/Users/DELL/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=/main.1f19ae8e.js.map

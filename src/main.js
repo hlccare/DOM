@@ -4,9 +4,9 @@ title = dom.attr(div, 'title')
 console.log(`title: ${title}`)
 console.log(div)
 dom.text(div, '你好，这是新的内容')
-dom.style(test, {border: '1px solid red', color: 'blue'})
+dom.style(test, { border: '1px solid red', color: 'blue' })
 console.log(dom.style(test, 'border'))
-dom.style(test, 'border','1px solid green')
+dom.style(test, 'border', '1px solid green')
 console.log(dom.style(test, 'border'))
 
 dom.after(test, div)
@@ -17,9 +17,9 @@ dom.class.add(test, 'blue')
 dom.class.remove(test, 'red')
 console.log(dom.class.has(test, 'blue'))
 
-const fn = ()=>{
+const fn = () => {
     console.log('点击了')
-} 
+}
 dom.on(test, 'click', fn)
 dom.off(test, 'click', fn)
 
@@ -40,5 +40,12 @@ console.log(dom.next(s2))
 console.log(dom.previous(s2))
 
 const t = dom.find('#travel')[0]
-dom.each(dom.children(t), (n)=> dom.style(n, 'color', 'red'))
+dom.each(dom.children(t), (n) => dom.style(n, 'color', 'red'))
 console.log(dom.index(t2))
+
+const redDiv = dom.find('#test>.red')[0] // 获取对应的元素
+dom.style(redDiv, 'color', 'red') // 设置 div.style.color
+
+console.log('----')
+const divList = dom.find('.red') // 获取多个 .red 元素
+dom.each(divList, (n) => console.log(n)) // 遍历 divList 里的所有元素
